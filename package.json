@@ -1,0 +1,100 @@
+{
+  "name": "pi-acp-stream",
+  "version": "0.6.0",
+  "description": "Pi extension: ACP agent client with live streaming deltas and tool-call forwarding (fork of @buihongduc132/pi-acp-agents)",
+  "keywords": [
+    "pi-package",
+    "pi-extension",
+    "pi",
+    "pi-coding-agent",
+    "acp",
+    "agent-client-protocol",
+    "streaming",
+    "tool-calls",
+    "qoder"
+  ],
+  "type": "module",
+  "main": "./index.ts",
+  "types": "./src/public-api.ts",
+  "exports": {
+    ".": {
+      "types": "./src/public-api.ts",
+      "import": "./index.ts"
+    },
+    "./api": {
+      "types": "./src/public-api.ts",
+      "import": "./src/public-api.ts"
+    }
+  },
+  "license": "MIT",
+  "author": "jlon",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlon/pi-acp-stream.git"
+  },
+  "homepage": "https://github.com/jlon/pi-acp-stream#readme",
+  "bugs": {
+    "url": "https://github.com/jlon/pi-acp-stream/issues"
+  },
+  "files": [
+    "index.ts",
+    "src/**/*.ts",
+    "skills/**/*",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "pi": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "skills": [
+      "./skills"
+    ]
+  },
+  "peerDependencies": {
+    "@mariozechner/pi-coding-agent": "*",
+    "typebox": "*"
+  },
+  "peerDependenciesMeta": {
+    "@mariozechner/pi-coding-agent": {
+      "optional": true
+    },
+    "typebox": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@agentclientprotocol/sdk": "^0.21.0",
+    "pi-acp-types": "^0.1.0"
+  },
+  "devDependencies": {
+    "@mariozechner/pi-coding-agent": "^0.73.0",
+    "@mariozechner/pi-tui": "^0.73.0",
+    "@types/node": "^22.0.0",
+    "@vitest/coverage-v8": "^4.1.5",
+    "typebox": "^1.1.37",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.5"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:ci": "vitest run --coverage",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run test:ci",
+    "prepack": "node scripts/prepack.mjs",
+    "postpack": "node scripts/postpack.mjs",
+    "version": "node scripts/version-sync.mjs",
+    "release:patch": "npm version patch -m 'release: v%s'",
+    "release:minor": "npm version minor -m 'release: v%s'",
+    "release:major": "npm version major -m 'release: v%s'",
+    "release:beta": "npm version prerelease --preid=beta -m 'release: v%s'",
+    "publish:beta": "npm publish --tag beta --access public",
+    "publish:next": "npm publish --tag next --access public",
+    "publish:dry": "npm publish --dry-run --access public"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}
